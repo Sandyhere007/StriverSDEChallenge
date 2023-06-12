@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+
+vector<vector<long long int>> printPascal(int n) 
+{
+  // Write your code here.
+  vector<vector<long long int>> resu(n) ;
+
+  for(int i = 0 ;  i<n ; i++){
+    resu[i].resize(i+1);
+    resu[i][0] = resu[i][i] = 1;
+    for(int j = 1 ; j<i ; j++){
+      resu[i][j] = resu[i-1][j-1] + resu[i-1][j];
+    }
+  
+  }
+return resu;
+
+
+
+}
