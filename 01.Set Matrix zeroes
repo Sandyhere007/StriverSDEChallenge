@@ -1,0 +1,39 @@
+The work is to set the whole row and column elements to be zero where we finds a 0 as (i,j) array element.
+
+
+1.we will be using a col0 initially col0 =1 ; element to keep track of ever(i,0) element and set col0 as zero if element is 0
+2.we will run a loop say i from 0 to n ; 
+  where we update mat[i][0] and mat[0][j] as 0 if we encounters an array elements say index(i,j) as 0.
+  now we start from bottom row and last index and change it to 0 zero if either of mat[i][0] or mat[0][j] is 0.
+  The reason we are doing it like backtracking is that if we do it from front our unnecessary number will also get updated as zero if any of the row 0 element is 0.
+  at last inside the running loop itself we check that if col0 = 0 update mat[i][0] = 0;
+
+
+
+#include <bits/stdc++.h>
+
+void setZeros(vector<vector<int>> &matrix)
+{
+	// Write your code here.
+	int col0 = 1;
+	for(int i = 0 ; i < matrix.size() ; i++){
+		if(matrix[i][0]==0) col0 = 0;
+		for(int j  = 1 ; j < matrix[0].size() ; j++){
+			if(matrix[i][j]==0 ){
+				matrix[i][0] = 0;
+				matrix[0][j] = 0;
+			}
+		}
+	}
+
+	for(int i = matrix.size()-1 ; i>=0 ; i--){
+		for(int j = matrix[0].size()-1 ; j>=1 ; j--){
+			if(matrix[i][0]==0 || matrix[0][j]==0){
+				matrix[i][j] = 0;
+			}
+		}
+		if(col0 == 0) matrix[i][0] = 0;
+	}
+
+
+}
