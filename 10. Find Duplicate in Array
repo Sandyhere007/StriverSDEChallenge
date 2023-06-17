@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+// Takeaway
+// DO NOT GET CONFUSED WITH THESE QUESTION AS FIND MISSING NUMBER THERE THE 
+// NUMBER IS ABSENT HERE AN EXTRA NUMBER IS PRESENT
+
+	// Approach 1
+	// can use hashing hashmaps 
+	// store frequency of all elements and the one whose complexity is 2 is our number
+
+	// Approach 2 
+		// Run a nested loops i = 0 to n and j = i=1 to nested
+		// if element at i and j are equal return that elemennt thats duplicate 
+
+		// optimal 
+		// sort the aray to reduce tc from O(n*n) to O(n*logn)
+	// sort(arr.begin() ,arr.end());
+	// for(int i = 0 ; i< n ; i++){
+	// 	if(arr[i]==arr[i+1]){
+	// 		return arr[i];
+		// }
+	// }
+// return -1;
+
+// Most optimal 
+	// Linkedlist cycle detection method
+int findDuplicate(vector<int> &arr, int n){
+	// Write your code here.
+
+int slow = arr[0];
+int fast = arr[0];
+
+do{
+	slow = arr[slow];
+	fast = arr[arr[fast]];
+}while(slow!=fast);
+fast = arr[0];
+while(slow!=fast){
+	slow = arr[slow];
+	fast = arr[fast];
+}
+return slow;
