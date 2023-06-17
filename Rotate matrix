@@ -1,0 +1,45 @@
+The real problem in which you need to rotate matrix by 90deg clockwise or anticlockwise 
+
+In Brute P: we can traverse array using to loops in the order we need to store the element and letterly transfer them to the real order
+
+Optimal : 
+TAKE TRANSPOSE OF THE MATRIX  i.e.mat[i][j] = mat[j][i] 
+REVERSE THE ROW (for clockwise)  and columns (for anyclockwise)
+
+
+
+
+These is a codestudios problem where at place of rotating the whole row or columns we are rotating each element by a single place
+the problem can be easily solved by storing first index element in a temp variable and traversing the whole array in spiral order and
+on every iteration swap current element with the temp 
+USE 4 VARIABLES TOP LEFT RIGHT BOTTOM AND INITIALISE THEM ACCORDING TO THE POSITION
+DO USE OF WHILE LOOP 
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+   
+    int left = 0 ,right  = n-1, top = 0 , bottom = m-1,temp, k;
+
+    while(left < right && top < bottom){
+        int temp = mat[top][left];
+        for(int col = left+1 ; col <=right ; col++){
+            swap(temp, mat[top][col]);
+        }top++;
+        for(int row = top ; row <= bottom ;row++ ){
+            swap(temp , mat[row][right]);
+        }right--;
+
+        for(int col = right  ; col >= left ; col--){
+            swap(temp , mat[bottom][col]);
+        } bottom--;
+
+        for(int row = bottom ; row >=top ; row-- ){
+            swap(temp, mat[row][left]);
+        } left++;
+
+        mat[top-1][left-1] =temp;
+    }
+
+
+}
