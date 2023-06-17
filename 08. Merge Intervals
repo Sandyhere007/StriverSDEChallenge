@@ -1,0 +1,49 @@
+It is a hard level question putted as medium where we need to merge intervals if in range and return with the output array 
+
+
+ 
+// Takaway 
+// Do not run search operations on given array do it on answer array
+// Be aware of looping variable
+// Whenever you are giving index for array use []
+
+Approach:
+1.sort array
+2.run a loop say i from 0-n
+3.initialise start =arr[i][0] and end =arr[i][1]
+4. use if condition in order to jump the iteration when array is not empty and end < last element of resultant vector
+5. run another for loop say j = i+1 to j<n [in order to find all contigous intervals which can be merged]
+  5.1. if it can be merged means end<=res.back()[1] find max of end and arr[j][1] i.e. end= max(end, arr[j][1])
+  5.2. else break the loop;
+at last push the element start and end as a pair in the ans vector. 
+return the result
+
+#include <bits/stdc++.h> 
+/*
+    intervals[i][0] = start point of i'th interval
+    intervals[i][1] = finish point of i'th interval
+*/
+vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
+{
+    int n = intervals.size();
+    sort(intervals.begin(),intervals.end());
+    vector<vector<int>> res;
+    for(int i = 0 ;  i< n ; i++){
+       int start = intervals[i][0];
+       int end = intervals[i][1];
+       if(!intervals.empty() && end<= res.back()[1]){
+           continue;
+       }
+       for(int j = i+1 ; j< n ; j++){
+           if(intervals[j][0]<=end){
+               end = max(end,intervals[j][1]);
+           }
+           else{
+               break;
+           }
+       }
+       res.push_back({start , end} );
+   } 
+    return res;
+}
+
