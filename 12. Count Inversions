@@ -1,0 +1,55 @@
+//Brute is using two loops i = 0 to n and j = i+1 to n 
+//  if arr[i]>arr[j] count++
+
+
+
+//Optimal 
+//using merge sort do add count+=mid-i while merging the right subtree of the recursion
+
+#include <bits/stdc++.h> 
+
+int merge(long long *arr , long long *temp, int low , int mid, int high){
+    int i = low , j = mid+1, k =low ;
+    int count =0;
+    while(i<= mid && j<=high){
+        if(arr[i]<arr[j]){
+            temp[k++] = arr[i++];
+        }
+        else{
+            temp[k++] = arr[j++];
+            count +=(mid -i);
+        }
+    }
+    while(i<=low){
+         temp[k++] = arr[i++];
+    }
+    while(j<=high){
+            temp[k++] = arr[j++];
+    }
+    for(int i = low ; i<=high ; i++){
+        arr[i] = temp[i-low];
+    }
+    return count;
+}
+
+int mergesort(long long *arr ,long long *temp , int low , int high){
+    int count =0 ;
+    if (high < low) {
+        return 0;
+    }
+
+        int mid = (low+(high-low))/2;
+        count+= mergesort(arr,temp ,low , mid+1);
+        count+= mergesort(arr,temp ,mid+1 , high);
+        count+= merge(arr,temp,low,mid+1, right);
+        
+    
+return count;
+
+}
+long long getInversions(long long *arr, int n){
+    // Write your code here.
+    long long temp[n] ;
+    int ans =mergesort(arr,temp , 0 , n);
+    return  ans;
+}
