@@ -1,0 +1,33 @@
+//brute 
+//traverse the whole matrix using nested looops which gives time complexity as O(n*n);
+
+
+//optimal
+//using two pointer approach
+//set low =0  and high = m*n -1 , i= 0 and j = m-1;
+//traverse matrix with while(i<n && j>=0)
+  //if found target return 1
+  //if number is smaller then target then i++
+  //else j--;
+
+bool searchMatrix(vector<vector<int>>& mat, int target) {
+
+    int n = mat.size();
+    int m = mat[0].size();
+    int high = n*m-1;
+    int low = 0 ;
+    int i = 0 , j = m-1;
+
+    while(i<n &&j>=0){
+       if(mat[i][j]==target){
+           return true;
+       }
+       if(mat[i][j]<target){
+           i++;
+       }
+       else{
+           j--;
+       }
+    }
+    return false;
+}
