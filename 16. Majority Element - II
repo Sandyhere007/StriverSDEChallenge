@@ -1,0 +1,46 @@
+same as majority element use 2 el and count variables
+
+
+
+
+#include <bits/stdc++.h>
+
+vector<int> majorityElementII(vector<int> &arr)
+{
+    // Write your code here.
+    int n = arr.size();
+    int el1 = -1 , el2 =-1 , ct1 = 0, ct2 =0;
+    int i = 0 ;
+    vector<int> ans;
+    while(i<n){
+        if(arr[i]==el1)ct1++;
+        else if(arr[i] ==el2) ct2++;
+        else if(ct1==0){
+            el1 = arr[i];
+            ct1++;
+        }
+        else if(ct2 == 0){
+            el2 = arr[i];
+            ct2++;
+        }
+        else{
+            ct1--;
+            ct2--;
+        }
+        i++;
+    }
+    int elct1 =0 , elct2 = 0;
+    for(int i = 0 ; i< n; i++){
+        if(arr[i]==el1) elct1++;
+        else if(arr[i]==el2) elct2++;
+    }
+
+    if(elct1>n/3){
+        ans.push_back(el1);
+    }
+    
+    if(elct2>n/3){
+        ans.push_back(el2);
+    }
+return ans;
+}
