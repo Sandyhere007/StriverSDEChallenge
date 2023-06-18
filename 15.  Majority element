@@ -1,0 +1,43 @@
+// brute force
+// use nested loop and find element by counting all element
+
+// better 
+	// use hashmap and increase count of every element and the count >n/2 is your answer
+
+
+//optimal moore's voting algorithm
+// 1. take count = 0 in which we are going to count the elements
+// 2/ traverse the whole array using while loop 
+	// 2.1. check if count ==0 means you are at a new majority candidate so update current element as el
+	// 2.2. if element is same as el increase count else decrease count
+// run a loop and count for the occurences of el we found so there will be no chances of our answer to be wrong
+
+
+#include <bits/stdc++.h>
+
+int findMajorityElement(int arr[], int n) {
+	// Write your code here.
+	int el = 0;
+	int i = 0;
+	int count=0;
+
+	while(i<n){
+		if(count==0) el = arr[i];
+		if(arr[i]==el){
+			count++;
+		}
+		else{
+			count--;
+		}
+		i++;
+	}
+	int elcount = 0;
+	for(int i = 0 ; i< n ; i++){
+		if(arr[i]==el)elcount++;
+	}
+	if(elcount>n/2)
+		return el;
+	else{
+		return -1;
+	}
+}
