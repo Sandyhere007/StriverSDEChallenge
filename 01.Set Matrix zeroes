@@ -1,5 +1,13 @@
-The work is to set the whole row and column elements to be zero where we finds a 0 as (i,j) array element.
+The task is to set the whole row and column elements to be zero where we finds a 0 as (i,j) array element.
 
+brute 
+1. traverse the whole matrix and marking the whole row and column with -9999 when we got a 0;
+2. traverse again and make 0 at place of -9999
+Time Compexity O(n*m) * O(n+m) + o(n*m)
+
+Better
+use extra arrays of size row and columns and making change in that arrays.
+if we got a number 0 in row or column array make the whole row and column =0;
 
 1.we will be using a col0 initially col0 =1 ; element to keep track of ever(i,0) element and set col0 as zero if element is 0
 2.we will run a loop say i from 0 to n ; 
@@ -26,8 +34,8 @@ void setZeros(vector<vector<int>> &matrix)
 		}
 	}
 
-	for(int i = matrix.size()-1 ; i>=0 ; i--){
-		for(int j = matrix[0].size()-1 ; j>=1 ; j--){
+	for(int i = matrix.size()-1 ; i>=0 ; i--){ //using i till 0 because we need to cover al rows
+		for(int j = matrix[0].size()-1 ; j>=1 ; j--){ //using j till 1 because we have already set 0th element as zero we do not need to do that again
 			if(matrix[i][0]==0 || matrix[0][j]==0){
 				matrix[i][j] = 0;
 			}
