@@ -1,0 +1,47 @@
+Brute 
+Use two loops to find count of every element 
+count=2 is duplicate
+count= 0 is missing
+
+better hashing 
+same as before just reduces time complexity and increases space complexity
+
+optimal [use mats]
+sn= sum of all numbers from 1 to n n*n+1 /2
+s2n = sum of square of every number n* n+1 * 2*n +1  / 6
+
+run a loop and find 
+s = sum of all array elements
+s2 =sum of square of all elements
+
+val1  = s- sn;
+val2 = s2-s2n
+val2 = val2/val1
+
+x= val1+val2 /2 
+y = x-val;  missing
+
+
+#include <bits/stdc++.h>
+
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+	// Write your code here 
+	long long sn = (n*(n+1))/2;
+	long long s2n = (n* (n+1) * (2*n+1))/6;
+long long s = 0, s2 = 0;
+	for(int i =0 ; i < n ; i++) {
+		s += arr[i];
+		s2+= (arr[i]*arr[i]);
+	}
+	long long val1 = s-sn;
+	long long val2 = s2 - s2n;
+
+	val2 = val2/val1;
+
+	int x=  (val1+val2)/2;
+	int y = x-val1;
+
+	return {(int)y, (int)x};
+	
+}
