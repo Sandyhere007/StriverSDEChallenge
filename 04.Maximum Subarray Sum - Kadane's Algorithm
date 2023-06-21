@@ -1,6 +1,28 @@
 #include <bits/stdc++.h> 
 
 Takeaway use int type as function type given which will be much suitable for larger inputs.
+GEEKSFORGEEKS SOLUTION
+firstly loop i from 0 to n and then in every iteration
+  do sum
+  do find maximum
+  do use kadane approach if(sum<0) sum =0;
+we have used maximum finding rpocess before sum=0 because in case of negative it will store negative number at place of 0
+
+    long long maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        
+        long long sum = 0 ,maxi = INT_MIN;
+        for(int i = 0 ; i < n ; i++){
+            sum+=arr[i];
+            maxi  = max(maxi,sum);
+            if(sum<0){
+                sum =0 ;
+            }
+        }
+            // if(sum<0) return
+        return maxi;
+    }
 
 long long maxSubarraySum(int arr[], int n)
 {
