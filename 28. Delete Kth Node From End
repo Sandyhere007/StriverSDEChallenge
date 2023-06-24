@@ -1,0 +1,86 @@
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+    }
+    Node(int data, Node* next)
+    {
+        this->data = data;
+        this->next = next;
+    }
+};
+*/
+// It is done in a single traversal but cannot handle edge cases where n=K
+// so we will be using another iteration;
+// 1. traverse fast to k iteration means k 
+// 2. now traverse till end using another pointer and check if temp==fast means your count == K 
+// means you have to delete the head node so return head->next
+// 3. now take slow = head and start moving slow and fast one place and traverse 
+// till fast->next!=NULL means actually you are caring the diffrence and at last 
+// slow is setted as your node prior to the node you want to delete
+// 4. Now do changes in the pointer to delete the ll node 
+Node* removeKthNode(Node* head, int K)
+{
+    Node* slow = head;
+    Node* fast = head;
+    Node* temp = head;
+    for(int i = 1 ; i <= K; i++){
+        fast=fast->next;
+    }
+    while(temp){
+        temp=temp->next;
+    }
+    if(temp==fast) return head->next;
+    while(fast->next){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    Node* newNode = slow->next->next;
+    slow->next->next = NULL;
+    slow->next = newNode;
+
+    return head;
+}
+
+
+// 1. Traverse and count nodes in one traversal of O(n)
+// 2. now calculate n = count-K-1[size-1-K];
+// 3. traverse till n using another loop
+// and now change the pointer in order to delete the node just next to which 
+// you are standing
+
+// Node* removeKthNode(Node* head, int K)
+// {
+//     // Write your code here.
+//     Node* temp = head;
+//     int count=0;;
+//     while(temp){
+//         temp = temp->next;
+//         count++;
+//     }
+//     if(count==K) return head->next;
+
+//     int n = count-K-1;
+//     temp = head;
+//     for(int i = 1 ; i <= n; i++){
+//         temp = temp->next;
+//     }
+//     Node*next = temp->next->next;
+//     temp->next->next = NULL;
+//     temp->next=next;
+
+//     return head;
+// }
