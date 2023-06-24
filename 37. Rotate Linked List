@@ -1,0 +1,53 @@
+/**
+ * Definition for singly-linked list.
+ * class Node {
+ * public:
+ *     int data;
+ *     Node *next;
+ *     Node() : data(0), next(nullptr) {}
+ *     Node(int x) : data(x), next(nullptr) {}
+ *     Node(int x, Node *next) : data(x), next(next) {}
+ * };
+ */
+
+
+Node *rotate(Node *head, int k) {
+     // Write your code here.
+
+     if(head==NULL || head->next==NULL) return head;
+     Node* temp = head;
+     int count =1 ;
+     // LOOP TO COUNT SIZE OF LL
+     while(temp->next){
+          count++;
+          temp = temp->next;
+     }
+     // MAKING SLL A CLL
+     temp->next  =head;
+     // counting a end variable from where we need to break and start a new lll
+     k = k%count;
+     int end = count-k;
+     while(end--){
+          temp = temp->next;
+     }
+     head= temp->next;
+     temp->next= NULL;
+
+     return head;
+}
+
+
+// Node *rotate(Node *head, int k) {
+//      // Write your code here.
+
+//      if(head==NULL || head->next==NULL) return head;
+//      for(int i = 0 ; i<k;i++){
+//           Node* temp = head;
+//           while(temp->next->next) temp = temp->next;
+//           Node* end = temp->next;
+//           temp->next =NULL;
+//           end->next = head;
+//           head = end;
+//      }
+//      return head;
+// }
