@@ -1,0 +1,83 @@
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next) {
+ *          this->data = data;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+//we have to sum the ll in the reverse order as head is ones place
+//so pour work is so simple 
+//1. traverse till num1 || num2 || carry exists 
+//2. if exist num1 or num2 add it in the sum 
+//3. lastly do elementary maths 
+//    carry = sum/10;
+//    create a node with value sum%10 and join it to the prev ->next
+
+// Node *addTwoNumbers(Node *num1, Node *num2) {
+
+//     Node* dummy = new Node();
+//     Node* temp = dummy;
+//     int carry = 0 ;
+
+//     while(num1 || num2 || carry){
+//         int sum = 0;
+//         if(num1){
+//             sum+= num1->data;
+//             num1= num1->next;
+//         }
+//         if (num2) {
+//           sum += num2->data;
+//           num2 = num2->next;
+//         }
+//         sum += carry;
+//         carry = sum / 10;
+//         Node *newNode = new Node(sum % 10);
+//         temp->next = newNode;
+//         temp = temp->next;
+// }
+// return dummy->next;
+// }
+
+//These solution do not work these is under work  
+Node *addTwoNumbers(Node *num1, Node *num2)
+{
+    // Write your code here.
+    int numb1= 0;
+    int numb2= 0;
+
+    while(num1){
+        numb1 = numb1*10 + num1->data;
+        num1= num1->next;
+    }
+    while(num2){
+        numb2 = numb2*10 + num2->data;
+        num2= num2->next;
+    }
+    int ans = numb1 + numb2;
+
+    Node* temp = new Node();
+    Node* newHead = temp;
+
+    while(ans>=0){
+        Node* dummy = new Node(ans%10);
+        temp->next = dummy;
+        temp = temp->next;
+        ans=ans/10;
+    }
+return newHead->next;
+}
