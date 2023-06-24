@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+
+*****************************************************************/
+// Hashing Solution
+// we used a hashmap to store nodes if the head is already present the cycle is detected return true if not found return false
+bool detectCycle(Node *head)
+{
+	//	Write your code here
+    unordered_set<Node*> st;
+    while(head!=NULL){
+        if(st.find(head)!= st.end()) return true;
+        st.insert(head);
+        head= head->next;
+    }
+    return false;
+}
+
+// Optimal using Floyd cycle detection algorithm
+// Take two pointers slow and fast
+// traverse the ll till fast ->next->next != NULL 
+// move by one place and fast by two pointers
+// and if your fast == slow means you have a cycle and return true.
+// bool detectCycle(Node *head)
+// {
+// 	//	Write your code here
+//     Node* slow = head;
+//     Node* fast = head;
+
+//     while(fast->next!=NULL && fast->next->next!=NULL){
+//         slow= slow->next;
+//         fast = fast->next->next;
+//         if(fast==slow)return true;
+//     }
+//     return false;
+// }
