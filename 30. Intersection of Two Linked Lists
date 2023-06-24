@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+*****************************************************************/
+// here intersection of two arrays means the node from which the whole ll back is same so we have to find that point
+
+// Brute solution
+// we fix head 1 and traverse the ll using another head and check for the same head if exist return  
+// It will not be a good solution because its somewhere nearly segmentation fault because of a lot of time consumption
+
+// optimal approach
+//here the intution is we traverse till both ll heads do not collide we use dummy heads for that work
+// if any dummy head gets null we point it to head of other ll
+doing these will actually remove the difference between the bigger and smaller ll
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+    Node* d1 = firstHead;
+    Node* d2 = secondHead;
+    while(d1!=d2){
+        d1 = d1==NULL ? secondHead : d1=d1->next;
+        d2 = d2==NULL ? firstHead : d2=d2->next;
+    }
+    return d1;
+}
+
+
+// Hashing solution
+// 1. we use a hashset to store the nodes of one ll 
+// 2. then check it in the second ll if found return point or at last return NULL
+// Node* findIntersection(Node *firstHead, Node *secondHead)
+// {
+//     //Write your code here
+//     unordered_set<Node*> st;
+//     while(firstHead!=NULL){
+//         st.insert(firstHead);
+//         firstHead = firstHead->next;
+//     }
+//     while(secondHead!=NULL){
+//         if(st.find(secondHead)!= st.end()){
+//             return secondHead;
+//         }
+//         secondHead = secondHead->next;
+//     }
+// return NULL;
+// }
