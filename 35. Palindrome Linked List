@@ -1,0 +1,63 @@
+/****************************************************************
+    Following is the class structure of the Node class:
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+*****************************************************************/
+// Using Slow and fast pointer
+
+Node *firstNode(Node *head)
+{
+ Node* slow = head;
+ Node* fast = head;
+ while(fast->next!= NULL && fast-> next -> next!=NULL){
+     slow= slow->next;
+     fast = fast->next->next;
+    if(slow==fast){
+        fast  = head;
+        while(slow!=fast){
+            slow= slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
+
+ } 
+return NULL;
+
+}
+
+// // Using Hashing
+// Node *firstNode(Node *head)
+// {
+//     //    Write your code here.
+//     unordered_set<Node*> hashTable;
+//     int count=-1;
+//     while(head!=NULL){
+//         count++;;
+//         if(hashTable.find(head)!=hashTable.end()) return head;
+//         hashTable.insert(head);
+//         head=head->next;
+//     }
+// return NULL;
+
+// }
