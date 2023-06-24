@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+// take a dummy pointer pointing to a node 0. and next of dummy is pointing to head 
+// We take 3 pointers cur pre and next and point them to dummy
+// here we have been given the n means size of the ll if not given we have to calculate it
+// we traverse the ll till end and in every iteration we set prev curr and nex one after other
+// here we start iterating till k and for the whole iteration we reverse the pointers
+  // cur->next = nex->next;
+  // nex->next = pre->next
+  // pre->next = nex;
+  // nex = cur->next;
+// and lastly
+
+
+Node *getListAfterReverseOperation(Node *head, int n, int b[]){
+	// Write your code here.
+
+  Node* dummy = new Node(0);
+  dummy= head->next;
+  Node* cur = dummy, *pre = dummy, *nex = dummy;
+  int count = 0;
+  while(curr ){
+    curr=curr->next;count++;
+  }
+
+  while(count>=K){
+    cur = pre->next;
+    nex = cur->next;
+    for(int i = 1  ; i < K ; i++){
+      cur->next =nex->next;
+      nex->next = pre->next;
+      pre->next =nex;
+      nex= cur->next;
+    }
+    pre= cur;
+    count-=K;
+  }
+  return dummy->next;
+
+
+}
