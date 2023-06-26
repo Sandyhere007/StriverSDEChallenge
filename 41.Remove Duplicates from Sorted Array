@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+
+
+// hashing 
+// int removeDuplicates(vector<int> &arr, int n) {
+// 	// Write your code here.
+
+
+// 	set<int> st;
+// 	for(int i = 0 ; i< n ; i++ ){
+// 		st.insert(arr[i]);
+// 	}
+// 	int k = st.size();
+// 	int j =0 ;
+// 	for(auto x:st){
+// 		arr[j++] = x;
+// 	}
+// 	return k;
+// }
+
+
+// Optimal Two Pointer Approach
+int removeDuplicates(vector<int> &arr, int n) {
+  // Write your code here.
+	int i = 0 ;
+	for(int j = 1 ; j < n ; j++){
+		if(arr[i]!=arr[j]) {
+			i++; // these increment here is to take care
+			//  of the starting element like we are having unique 
+			arr[i]=arr[j];
+		}
+	}
+return i+1;
+}
