@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+static bool cmp(pair<int,pair<int,int>> a ,  pair<int,pair<int,int>> b){
+    if(a.second.first==b.second.first){     
+         return a.second.second<b.second.second;  
+         }else
+          {       
+              return a.second.first<b.second.first;  
+              }  
+}
+vector<int> maximumMeetings(vector<int> &start, vector<int> &end) {
+    // Write your code here.
+    vector<int> res;
+    vector<pair<int,pair<int,int>>> v;
+    for(int i = 0 ; i < start.size() ; i++){
+        // pair<int, int> p = make_pair();
+        v.push_back({start[i],{end[i],i+1}});
+    }
+    sort(v.begin(),v.end(),cmp);
+
+
+    int count = 1;
+    int endM = v[0].second.first;
+    res.push_back(v[0].second.second);
+    for(int i = 1 ; i< v.size() ; i++){
+        if(v[i].first > endM){
+            res.push_back(v[i].second.second);
+            endM = v[i].second.first;
+        }
+    }
+    return res;
+}
