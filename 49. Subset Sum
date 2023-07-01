@@ -1,0 +1,26 @@
+
+// Intution
+// For each iterative call we have two options select it to add to sum or not to select it
+// it will generate all subsets  and add them to ans when there are no next index to go
+// all elements are finished being traversed
+// Sort the array as ans is expected in sorted format
+
+void rec(int ind, vector<int> &num, int n , vector<int> &ans  , int sum){
+	if(ind==n){
+		ans.push_back(sum);
+		return;
+	}
+	rec(ind+1 , num , n , ans, sum+num[ind]);
+	rec(ind+1 , num , n , ans, sum);
+
+}
+
+
+vector<int> subsetSum(vector<int> &num){
+	// Write your code here.
+	vector<int> ans;
+	int n = num.size();
+	rec(0, num ,n , ans, 0);	
+	sort(ans.begin(), ans.end());
+	return ans;
+}
