@@ -1,0 +1,129 @@
+
+// Its SOmewhere fails for bigger inputs
+// #include <bits/stdc++.h> 
+// class Queue {
+//     private:
+//     int * arr;
+//     int size;
+//     int head ; 
+//     int rear; 
+// public:
+//     Queue() {
+//         // Implement the Constructor
+//         size = 10001;
+//         head =-1; 
+//         rear= -1 ;
+//         arr =new int(size);
+//     }
+
+//     /*----------------- Public Functions of Queue -----------------*/
+
+//     bool isEmpty() {
+//         // Implement the isEmpty() function
+//         if(head==rear){
+//             return 1;
+//         }
+//         else {
+//             return 0;
+//         }
+//     }
+
+//     void enqueue(int data) {
+//         // Implement the enqueue() function
+//         if(rear!=size){
+//             if(head==-1)
+//                 head= 0;
+//             arr[rear++] = data;
+//         }
+        
+//     }
+
+//     int dequeue() {
+//         // Implement the dequeue() function
+//         if(rear==head){
+//             return -1;
+//         }
+//         else{
+//         int x = arr[head++];
+//           if (rear == head) {
+//             rear = -1;
+//             head = -1;
+//           }
+//           return x;
+//         }
+//     }
+
+//     int front() {
+//         // Implement the front() function
+//         if(rear==head){
+//             return -1;
+//         }
+//         return arr[head];
+//     }
+
+// };
+
+#include <bits/stdc++.h> 
+class Queue {
+    int * arr;
+    int size;
+    int head ; 
+    int rear; 
+public:
+    Queue() {
+        // Implement the Constructor
+        size = 1000;
+        head =0;
+        rear= 0 ;
+        arr =new int(size);
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    bool isEmpty() {
+        // Implement the isEmpty() function
+        if(head==rear){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    void enqueue(int data) {
+        // Implement the enqueue() function
+        if(rear!=size){
+            arr[rear] = data;
+            rear++;
+        }
+        
+    }
+
+    int dequeue() {
+        // Implement the dequeue() function
+        int x = arr[head];
+        if (head != rear) {
+          arr[head] = -1;
+          head++;
+          if (rear == head)
+            {
+            rear = 0 ; 
+            head = 0;
+            }
+        return x;
+        }
+          else{
+            return -1;
+        }
+    }
+
+    int front() {
+        // Implement the front() function
+        if(head!=rear)
+            return arr[head];
+        else{
+            return -1;
+        }
+    }
+
+};
