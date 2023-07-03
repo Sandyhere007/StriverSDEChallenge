@@ -1,0 +1,61 @@
+#include <bits/stdc++.h> 
+// Stack class.
+class Stack {
+public:
+    int *arr;
+    int size;
+    int peek;
+    
+    Stack(int capacity) {
+        // Write your code here.
+        this->size = capacity;
+        arr = new int[size];
+        peek = -1;
+
+    }
+
+    void push(int num) {
+      // Write your code here.
+      if (peek<size){
+        peek++;
+        arr[peek] = num;
+    }
+    }
+
+    int pop() {
+        // Write your code here.
+        if(peek>=0){
+            int x =arr[peek];
+            peek--;  
+            return x ;
+        }
+    }
+    
+    int top() {
+        // Write your code here.
+        if(peek>=0 && peek<size)
+            return arr[peek];
+    }
+    
+    int isEmpty() {
+        // Write your code here.
+        return (peek==-1) ? 1 : 0;
+        // if(peek==-1){
+        //     return 1;
+        // }
+        // else{
+        //     return 0;
+        // }
+    }
+    
+    int isFull() {
+        // Write your code here.
+        if(peek==size){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+};
