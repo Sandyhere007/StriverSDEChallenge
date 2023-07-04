@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+
+vector<int> nextGreater(vector<int> &arr, int n) {
+    // Write your code here
+    vector<int> nge(n,-1);
+    stack<int> st;
+    // traversing the array
+    // use (i=2*n-1) if said circular nge because like these we will be using an imaginary double array 
+    // which is not actually created but indexed like these and at place of i we use i%n to get the correct index
+    for(int i  = n-1 ; i>=0 ; i--){
+        // checking if the top element of stack is the nge for the i element or not
+      while (!st.empty() && arr[i] >= st.top()) {
+        st.pop();
+      }
+    //   use if(i<n) here if it is said to find ciecular nge
+        // adding stack top element to nge array  
+        if(!st.empty()) 
+            nge[i]= st.top();
+        st.push(arr[i]);
+    }
+return nge;
+}
