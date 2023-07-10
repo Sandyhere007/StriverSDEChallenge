@@ -1,0 +1,53 @@
+#include <bits/stdc++.h> 
+
+// Using hash array
+
+void solve(int ind , string &s , string &res, vector<string> &ans, int freq[] ){
+    if(ind == s.length()){
+        ans.push_back(res);
+        return ;
+    }
+
+    for(int i = 0 ; i < s.length() ; i++){
+        if(!freq[i] ){
+            freq[i] = 1;
+            res.push_back(s[i]);
+            solve(ind+1, s, res, ans, freq);
+            freq[i] = 0;
+            res.pop_back();
+        }
+    }
+}
+
+vector<string> findPermutations(string &s) {
+  // Write your code here.
+
+    vector<string> ans;
+    string res;
+    int freq[s.size()];
+    for(int i = 0 ; i< s.size() ; i++) freq[i] = 0;
+    solve(0 , s , res, ans , freq);
+    return ans; 
+
+}
+
+// Optimal solution
+// void rec(int ind , int n ,string &s , vector<string> &ans ){
+//     if(ind == n){
+//         ans.push_back(s);
+//         return ;
+//     }
+//     for(int i = ind ; i < n ; i++){
+//         swap(s[i], s[ind]);
+//         rec(ind+1 , n , s , ans);
+//         swap(s[i], s[ind]);
+//     }
+
+// }
+
+// vector<string> findPermutations(string &s) {
+//     // Write your code here.
+//     vector<string> ans ; 
+//     rec(0 , s.size() , s , ans);
+//     return ans;
+// }
